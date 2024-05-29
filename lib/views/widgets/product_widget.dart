@@ -16,6 +16,7 @@ class ProductWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
+                clipBehavior: Clip.hardEdge,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
                 width: MediaQuery.of(context).size.width / 3 - 50,
