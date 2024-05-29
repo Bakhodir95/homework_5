@@ -1,17 +1,21 @@
 import 'package:api_get/controllers/product_controller.dart';
+import 'package:api_get/controllers/user_controller.dart';
+import 'package:api_get/models/user.model.dart';
+import 'package:api_get/views/screens/first_page.dart';
 import 'package:api_get/views/screens/second_screen.dart';
 import 'package:api_get/views/widgets/product_widget.dart';
+import 'package:api_get/views/widgets/user_widget.dart';
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<ThirdScreen> createState() => _FirstPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
-  ProductControllers productControllers = ProductControllers();
+class _FirstPageState extends State<ThirdScreen> {
+  UserController userController = UserController();
 
   @override
   void initState() {
@@ -20,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   Future<void> fetchProducts() async {
-    await productControllers.getUser();
+    await userController.getUsers();
     setState(() {});
   }
 
@@ -29,7 +33,7 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Internet Magazin',
+          'Users',
           style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
         ),
         centerTitle: true,
@@ -39,7 +43,7 @@ class _FirstPageState extends State<FirstPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SecondScreen(),
+                      builder: (context) => FirstPage(),
                     ));
               },
               icon: const Icon(
@@ -55,9 +59,9 @@ class _FirstPageState extends State<FirstPage> {
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
         ),
-        itemCount: productControllers.products.length,
+        itemCount: userController.users.length,
         itemBuilder: (context, index) {
-          return ProductWidget(productControllers.products[index]);
+          return UserWidget(userController.users[index]);
         },
       ),
     );

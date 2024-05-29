@@ -1,18 +1,19 @@
+import 'package:api_get/controllers/category_controller.dart';
 import 'package:api_get/controllers/product_controller.dart';
-import 'package:api_get/views/screens/second_screen.dart';
+import 'package:api_get/views/screens/third_screen.dart';
+import 'package:api_get/views/widgets/category_widget.dart';
 import 'package:api_get/views/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+class SecondScreen extends StatefulWidget {
+  SecondScreen({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<SecondScreen> createState() => _FirstPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
-  ProductControllers productControllers = ProductControllers();
-
+class _FirstPageState extends State<SecondScreen> {
+  CategoryController categoryController = CategoryController();
   @override
   void initState() {
     super.initState();
@@ -20,7 +21,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   Future<void> fetchProducts() async {
-    await productControllers.getUser();
+    await categoryController.getCategory();
     setState(() {});
   }
 
@@ -39,7 +40,7 @@ class _FirstPageState extends State<FirstPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SecondScreen(),
+                      builder: (context) => ThirdScreen(),
                     ));
               },
               icon: const Icon(
@@ -55,9 +56,9 @@ class _FirstPageState extends State<FirstPage> {
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
         ),
-        itemCount: productControllers.products.length,
+        itemCount: categoryController.categories.length,
         itemBuilder: (context, index) {
-          return ProductWidget(productControllers.products[index]);
+          return CategoryWidget(categoryController.categories[index]);
         },
       ),
     );
