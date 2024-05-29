@@ -30,8 +30,8 @@ class _FirstPageState extends State<FirstPage> {
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
         ),
         itemCount: productControllers.products.length,
         itemBuilder: (context, index) {
